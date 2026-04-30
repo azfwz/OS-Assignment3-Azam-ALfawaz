@@ -56,6 +56,12 @@ class SharedResources {
         // TODO: Protect this critical section with a lock
         // RACE CONDITION: Multiple threads might read and write simultaneously!
         contextSwitchCount++;
+         try {
+            contextSwitchCount++;
+        } finally {
+            contextSwitchLock.unlock();
+        }
+
     }
     
     // Method to increment completed process counter
