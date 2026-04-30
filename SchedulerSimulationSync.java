@@ -122,9 +122,9 @@ class Process implements Runnable {
     
     @Override
     public void run() {
-        // TODO #3: Acquire CPU semaphore before executing
-        // This ensures only allowed number of processes run simultaneously
-        
+              try {
+            SharedResources.cpuSemaphore.acquire();
+
         try {
             if (startTime == -1) {
                 startTime = System.currentTimeMillis();
